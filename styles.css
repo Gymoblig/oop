@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+    background-color: black;
+    color: #ff4500;
+    font-family: 'Share Tech Mono', monospace;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Úvodná sekcia na celú obrazovku */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+    box-shadow: 0px 0px 15px #ff4500;
+    position: relative;
+}
+
+.hero h1,p,a {
+    position: relative;
+    z-index: 2; /* Pred logom */
+}
+h1{
+    font-size: 3rem;
+}
+
+.logo {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* Za textom */
+    width: 400px;
+    height: auto;
+    opacity: 0.5; /* Priehľadnosť loga */
+
+}
+/* Ostatné štýly zostávajú nezmenené */
+.scroll-indicator {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+.scroll-indicator a {
+    text-decoration: none;
+    color: #00aaff;
+    font-weight: bold;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.scroll-indicator a:hover {
+    color: white;
+    text-shadow: 0 0 10px #00aaff, 0 0 20px #ff4500;
+}
+
+/* Sekcia cvičení */
+.cvicenia {
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.cvicenia.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Rozbaľovacie menu pri hoveri */
+.tree {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 600px;
+    margin: auto;
+}
+
+.tree .expandable {
+    padding: 10px;
+    font-size: 1.2em;
+    cursor: default;
+    transition: 0.3s;
+    color: #ff4500;
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.tree .expandable ul {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out, border 0.3s ease-out;
+    padding: 10px;
+    width: auto;
+    left: 10px;
+    border-radius: 5px;
+    padding-left:20px;
+}
+
+.tree .expandable:hover {
+    border: 2px solid #ff4500;
+}
+
+.tree .expandable:hover ul {
+    max-height: 500px;
+    opacity: 1;
+}
+
+a {
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: white;
+    text-shadow: 0 0 10px #00aaff, 0 0 20px #ff4500;
+}
+
