@@ -32,10 +32,7 @@ h1{
 }
 
 .logo {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     z-index: 1; /* Za textom */
     width: 400px;
     height: auto;
