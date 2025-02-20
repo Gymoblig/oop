@@ -1,124 +1,350 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
-body {
-    background-color: black;
-    color: #ff4500;
+/* Loader styles (presýpacie hodiny) */
+.loader {
+    width: 70px;
+    height: 40px;
+    outline: 2px solid #fff;
+    background:
+      radial-gradient(farthest-side, red 90%, #0000) 0 0/8px 8px no-repeat,
+      radial-gradient(farthest-side, #000 90%, #0000) 0 0/8px 8px no-repeat,
+      linear-gradient(#fff 0 0) 50%/10px 100% no-repeat,
+      conic-gradient(from 90deg at 10px 10px, #0000 90deg, #fff 0),
+      conic-gradient(from -90deg at 60px 30px, #0000 90deg, #fff 0);
+    animation: l9 2s infinite;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 1s ease-out; /* Fade-out efekt */
+  }
+  
+  @keyframes l9 {
+    0% { background-position: 50% 100%, 0 0, 50%; }
+    12.5% { background-position: 0 100%, 50% 0, 50%; }
+    25% { background-position: 0 0, 50% 100%, 50%; }
+    37.5% { background-position: 50% 0, 100% 100%, 50%; }
+    50% { background-position: 50% 100%, 100% 0, 50%; }
+    62.5% { background-position: 100% 100%, 50% 0, 50%; }
+    75% { background-position: 100% 0, 50% 100%, 50%; }
+    82.5% { background-position: 50% 0, 0 100%, 50%; }
+    100% { background-position: 50% 100%, 0 0, 50%; }
+  }
+  
+  /* Skrytie loadera po načítaní obsahu */
+  #content {
+    display: none;
+  }
+  
+  body {
     font-family: 'Share Tech Mono', monospace;
-    text-align: center;
     margin: 0;
     padding: 0;
-    position: relative;
-}
+    background-color: #121212;
+    color: #fff;
+    transition: all 0.5s ease;
+  }
+  
+  /* Svetlý režim */
+  body.light {
+    background-color: #f0f0f0;
+    color: #000;
+  }
+  
+  body.light #intro-header {
+    background: linear-gradient(#fff 90%, #f0f0f0);
+  }
+  
+  body.light #intro-text {
+    color: #ff4500;
+  }
+  
+  body.light #exercise-selector ul li a {
+    color: #000;
+    background-color: #f9f9f9;
+  }
+  
+  body.light #exercise-selector ul li a:hover {
+    background-color: #ddd;
+  }
+  
+  body.light #exercise-content {
+    background-color: #f9f9f9;
+  }
+  
+  /* Svetlý režim pre cvičenia */
+  body.light #exercise-selector {
+    background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+  }
+  
+  body.light #exercise-selector ul li a {
+    color: #000;
+  }
+  
+  body.light #exercise-selector ul li a:hover {
+    background-color: #ddd;
+  }
 
-/* Úvodná sekcia na celú obrazovku */
-.hero {
+  body.light #exercise-selector ul li a.selected {
+    background-color: #ff4500;
+  }
+  
+  body.light #exercise-content {
+    background-color: #f9f9f9;
+  }
+  
+  body.light #exercise-content h2 {
+    color: #ff4500;
+  }
+  
+  body.light #exercise-details {
+    background-color: #f1f1f1;
+  }
+  
+  /* Tmavý režim pre cvičenia */
+  body.dark #exercise-selector {
+    background: linear-gradient(to bottom, #212121, #333);
+  }
+  
+  body.dark #exercise-selector ul li a {
+    color: white;
+  }
+  
+  body.dark #exercise-selector ul li a:hover {
+    background-color: #444;
+  }
+  
+  body.dark #exercise-content {
+    background-color: #1f1f1f;
+  }
+  
+  body.dark #exercise-content h2 {
+    color: #ff4500;
+  }
+  
+  body.dark #exercise-details {
+    background-color: #222;
+  }
+  
+  /* Prepínač témy - tlačidlo ostáva vždy v pravom hornom rohu */
+  .theme-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  .theme-switcher img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Úvodná stránka */
+  #intro-header {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: rgba(0, 0, 0, 0.9);
-    box-shadow: 0px 0px 15px #ff4500;
-    position: relative;
-}
-
-.hero h1,p,a {
-    position: relative;
-    z-index: 2; /* Pred logom */
-}
-h1{
-    font-size: 3rem;
-}
-
-.logo {
-    position: relative;
-    z-index: 1; /* Za textom */
-    width: 400px;
-    height: auto;
-    opacity: 0.5; /* Priehľadnosť loga */
-
-}
-/* Ostatné štýly zostávajú nezmenené */
-.scroll-indicator {
-    margin-top: 20px;
-    font-size: 1.5em;
-}
-
-.scroll-indicator a {
-    text-decoration: none;
-    color: #00aaff;
-    font-weight: bold;
-    transition: color 0.3s, text-shadow 0.3s;
-}
-
-.scroll-indicator a:hover {
-    color: white;
-    text-shadow: 0 0 10px #00aaff, 0 0 20px #ff4500;
-}
-
-/* Sekcia cvičení */
-.cvicenia {
+    background: linear-gradient(#000 90%, #121212);
+  }
+  
+  #intro-text {
+    font-size: 2rem;
+    color: #ff4500;
+    transition: transform 1s ease;
+  }
+  
+  /* Layout pre cvičenia */
+  #main-content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 80px;
+    justify-content: space-between;
+  }
+  
+  /* Panel pre zoznam cvičení (desktop) */
+  #exercise-selector {
+    width: 30%;
     padding: 20px;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.cvicenia.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Rozbaľovacie menu pri hoveri */
-.tree {
+    background: linear-gradient(to bottom, #212121, #333);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  #exercise-selector ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #exercise-selector ul li {
+    margin-bottom: 10px;
+  }
+  
+  #exercise-selector ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    background-color: #222;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  #exercise-selector ul li a:hover {
+    background-color: #444;
+    transform: scale(1.05);
+  }
+  
+  #exercise-selector ul li a.selected {
+    background-color: #ff4500;
+    color: #fff;
+    padding: 12px 10px;
+    box-shadow: 0 4px 8px rgba(255, 69, 0, 0.7);
+  }
+  
+  /* Panel pre obsah cvičenia */
+  #exercise-content {
+    width: 70%;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  #exercise-content h2 {
+    color: #ff4500;
+  }
+  
+  #exercise-details {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Základný štýl pre odkazy */
+  a {
+    color: #ff4500;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  a:hover {
+    color: #00aaff;
+    transform: scale(1.1);
+  }
+  
+  a:focus {
+    outline: none;
+  }
+  
+  a:focus-visible {
+    outline: 2px solid #ff4500;
+  }
+  
+  /* Úprava pre mobilné zariadenia */
+  @media (max-width: 768px) {
+    /* Skrytie desktopového selectoru */
+    #exercise-selector {
+      display: none;
+    }
+  
+    /* Obsah cvičenia zaberá 100% šírku */
+    #exercise-content {
+      width: 100%;
+      margin: 0;
+      padding: 10px;
+    }
+  }
+  
+  /* Hamburger menu a slider pre mobilné zariadenia */
+  
+  /* Hamburger tlačidlo – fixované v ľavom hornom rohu */
+  .hamburger-menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+  }
+  
+  .hamburger-menu .bar {
+    height: 4px;
+    width: 100%;
+    background-color: #fff; /* Predvolená farba (tmavý režim) */
+    border-radius: 4px;
+  }
+  
+  body.light .hamburger-menu .bar {
+    background-color: #000; /* Svetlý režim */
+  }
+  
+  /* Slider menu z ľavej strany */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #121212;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    padding-top: 60px; /* Odstup pod hamburger tlačidlo */
+  }
+  
+  .mobile-menu.active {
+    transform: translateX(0);
+  }
+  
+  .mobile-menu ul {
     list-style: none;
     padding: 0;
-    text-align: left;
-    max-width: 600px;
-    margin: auto;
-}
-
-.tree .expandable {
-    padding: 10px;
-    font-size: 1.2em;
-    cursor: default;
-    transition: 0.3s;
-    color: #ff4500;
-    position: relative;
-    border: 2px solid transparent;
-}
-
-.tree .expandable ul {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.5s ease-out, opacity 0.3s ease-out, border 0.3s ease-out;
-    padding: 10px;
-    width: auto;
-    left: 10px;
-    border-radius: 5px;
-    padding-left:20px;
-}
-
-.tree .expandable:hover {
-    border: 2px solid #ff4500;
-}
-
-.tree .expandable:hover ul {
-    max-height: 500px;
-    opacity: 1;
-}
-
-a {
-    color: #00aaff;
+    margin: 0;
+  }
+  
+  .mobile-menu ul li {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+  }
+  
+  .mobile-menu ul li a {
+    color: #fff;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-a:hover {
-    color: white;
-    text-shadow: 0 0 10px #00aaff, 0 0 20px #ff4500;
-}
-
+    font-size: 1.2rem;
+  }
+  
+  body.light .mobile-menu {
+    background-color: #f0f0f0;
+  }
+  
+  body.light .mobile-menu ul li a {
+    color: #000;
+  }
+  
+  body.light .mobile-menu ul li a:hover {
+    color: #ff4500;
+  }
+  
+  /* Slider menu a hamburger menu sa zobrazujú len na mobilných zariadeniach */
+  @media (min-width: 769px) {
+    .mobile-menu {
+      display: none;
+    }
+    .hamburger-menu {
+      display: none;
+    }
+  }
+  

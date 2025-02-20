@@ -1,91 +1,83 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Objektovo orientované programovanie v Jave</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OOP Cvičenia</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Úvodná sekcia -->
-    
-    <div class="hero">
-        <h1>Objektovo orientované programovanie v Jave</h1>
-        <p>Vitajte na stránke venovanej predmetu OOP v Jave roku 2025.</p>
-        
-        <div class="scroll-indicator">
-            <a href="#cvicenia"><h1>⬇</h1></a>
-        </div>
-    </div>
-
-    <!-- Sekcia cvičení -->
-    <div id="cvicenia" class="cvicenia">
-        <img src="logo.png" alt="Logo" class="logo">
-        <h2>Cvičenia</h2>
-        <ul class="tree">
-            <li class="expandable">
-                <span>1. cvičenie</span>
-                <ul>
-                    <h4>Vytvorenie projektu v IntelliJ Idea, na konzole pomocou javac, java, jar, na konzole pomocou gradle</h4>
-                    <li><a href="cv01/cv01_prezentacia.pdf">Prezentácia</a></li>
-                    <li><a href="cv01/oop2025_cv01_app_intellij.zip">IntelliJ Idea App</a></li>
-                    <li><a href="cv01/oop2025_cv01_konzola.zip">Príklady s Konzolou</a></li>
-                </ul>
-            </li>
-            <li class="expandable"><span>2. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>3. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>4. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>5. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>6. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>7. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>8. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>9. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>10. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>11. cvičenie</span><ul></ul></li>
-            <li class="expandable"><span>12. cvičenie</span><ul></ul></li>
+  <div id="loader" class="loader"></div>
+  <div id="content" class="content">
+    <header id="intro-header">
+        <h1 id="intro-text">Objektovo orientované programovanie v Jave </h1>
+        <h3>Cvičenia</h3>
+        <!-- Hamburger tlačidlo umiestnené v ľavom hornom rohu -->
+        <button id="hamburger-menu" class="hamburger-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </header>
+      
+      <!-- Slider menu, ktoré sa vysúva z ľavej strany -->
+      <nav id="mobile-menu" class="mobile-menu">
+        <ul>
+          <li><a href="#" data-exercise="1">Cvičenie 1</a></li>
+          <li><a href="#" data-exercise="2">Cvičenie 2</a></li>
+          <li><a href="#" data-exercise="3">Cvičenie 3</a></li>
+          <li><a href="#" data-exercise="4">Cvičenie 4</a></li>
+          <li><a href="#" data-exercise="5">Cvičenie 5</a></li>
+          <li><a href="#" data-exercise="6">Cvičenie 6</a></li>
+          <li><a href="#" data-exercise="7">Cvičenie 7</a></li>
+          <li><a href="#" data-exercise="8">Cvičenie 8</a></li>
+          <li><a href="#" data-exercise="9">Cvičenie 9</a></li>
+          <li><a href="#" data-exercise="10">Cvičenie 10</a></li>
+          <li><a href="#" data-exercise="11">Cvičenie 11</a></li>
+          <li><a href="#" data-exercise="12">Cvičenie 12</a></li>
         </ul>
-    </div>
+      </nav>
+      
+      
+    <!-- Tlačidlo pre prepínanie tmy s obrázkom -->
+    <button id="theme-switcher" class="theme-switcher">
+      <img id="theme-icon" src="" alt="Theme icon">
+    </button>
+    
+    <div id="main-content">
+      <div id="exercise-selector">
+        <h2>Vyber Cvičenie</h2>
+        <ul>
+          <li><a href="#" data-exercise="1">Cvičenie 1</a></li>
+          <li><a href="#" data-exercise="2">Cvičenie 2</a></li>
+          <li><a href="#" data-exercise="3">Cvičenie 3</a></li>
+          <li><a href="#" data-exercise="4">Cvičenie 4</a></li>
+          <li><a href="#" data-exercise="5">Cvičenie 5</a></li>
+          <li><a href="#" data-exercise="6">Cvičenie 6</a></li>
+          <li><a href="#" data-exercise="7">Cvičenie 7</a></li>
+          <li><a href="#" data-exercise="8">Cvičenie 8</a></li>
+          <li><a href="#" data-exercise="9">Cvičenie 9</a></li>
+          <li><a href="#" data-exercise="10">Cvičenie 10</a></li>
+          <li><a href="#" data-exercise="11">Cvičenie 11</a></li>
+          <li><a href="#" data-exercise="12">Cvičenie 12</a></li>
+        </ul>
+      </div>
 
-    <script>
-        // Posun stránkou s animáciou
-        document.querySelector('.scroll-indicator a').addEventListener('click', function(event) {
-            event.preventDefault();
-            document.querySelector('#cvicenia').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        // Rozbalenie cvičení pri hover a kliknutí
-        const expandableItems = document.querySelectorAll('.tree .expandable');
-        
-        expandableItems.forEach(item => {
-            const ul = item.querySelector('ul');
-        
-            // Pre desktop (hover)
-            item.addEventListener('mouseenter', () => {
-                ul.style.maxHeight = ul.scrollHeight + 'px';
-                ul.style.opacity = '1';
-            });
-        
-            item.addEventListener('mouseleave', () => {
-                ul.style.maxHeight = '0';
-                ul.style.opacity = '0';
-            });
-        
-            // Pre mobilné zariadenia (klik)
-            item.addEventListener('click', () => {
-                if (ul.style.maxHeight === '0px' || ul.style.maxHeight === '') {
-                    ul.style.maxHeight = ul.scrollHeight + 'px';
-                    ul.style.opacity = '1';
-                } else {
-                    ul.style.maxHeight = '0';
-                    ul.style.opacity = '0';
-                }
-            });
-        });
-        
-        window.addEventListener('load', () => {
-            document.querySelector('.cvicenia').classList.add('show');
-        });
-    </script>
+      <div id="exercise-content">
+        <h2 id="exercise-title">Cvičenie 1</h2>
+        <div id="exercise-details">
+          <h4>Vytvorenie projektu v IntelliJ Idea, na konzole pomocou javac, java, jar, na konzole pomocou gradle</h4>
+          <ul>
+            <li><a href="cv01/cv01_prezentacia.pdf">Prezentácia</a></li>
+            <li><a href="cv01/oop2025_cv01_app_intellij.zip">IntelliJ Idea App</a></li>
+            <li><a href="cv01/oop2025_cv01_konzola.zip">Príklady s Konzolou</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
