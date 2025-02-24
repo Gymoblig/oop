@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
       exerciseTitle.textContent = `Cvičenie ${id}`;
       exerciseDetails.innerHTML = exercises[id] || '<p>Obsah neexistuje.</p>';
   }
+  
 
   loadExercise(1);
   exerciseLinks.forEach(link => {
