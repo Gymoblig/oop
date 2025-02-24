@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const content = document.getElementById('content');
   const themeSwitcher = document.getElementById('theme-switcher');
   const themeIcon = document.getElementById('theme-icon');
+  const arrowIcon = document.getElementById('sipka');
   const body = document.body;
 
   setTimeout(() => {
@@ -16,18 +17,22 @@ document.addEventListener('DOMContentLoaded', function () {
   if (localStorage.getItem('theme') === 'light') {
       body.classList.add('light');
       themeIcon.src = 'moon_dark.png';
+      arrowIcon.src = 'arrow_light.png';
   } else {
       themeIcon.src = 'sun_light.png';
+      arrowIcon.src = 'arrow_dark.png';
   }
 
   themeSwitcher.addEventListener('click', function () {
       if (body.classList.contains('light')) {
           body.classList.remove('light');
           themeIcon.src = 'sun_light.png';
+          arrowIcon.src = 'arrow_dark.png';
           localStorage.setItem('theme', 'dark');
       } else {
           body.classList.add('light');
           themeIcon.src = 'moon_dark.png';
+          arrowIcon.src = 'arrow_light.png';
           localStorage.setItem('theme', 'light');
       }
   });
