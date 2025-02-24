@@ -1,53 +1,60 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Elementy pre loader, obsah, prepínač témy a jeho ikonu
-    const loader = document.getElementById('loader');
-    const content = document.getElementById('content');
-    const themeSwitcher = document.getElementById('theme-switcher');
-    const themeIcon = document.getElementById('theme-icon');
-    const body = document.body;
-  
-    // Loader fade-out efekt
-    setTimeout(() => {
+  const loader = document.getElementById('loader');
+  const content = document.getElementById('content');
+  const themeSwitcher = document.getElementById('theme-switcher');
+  const themeIcon = document.getElementById('theme-icon');
+  const body = document.body;
+
+  setTimeout(() => {
       loader.style.opacity = 0;
       setTimeout(() => {
-        loader.style.display = 'none';
-        content.style.display = 'block';
+          loader.style.display = 'none';
+          content.style.display = 'block';
       }, 1000);
-    }, 2000);
-  
-    // Inicializácia témy
-    if (localStorage.getItem('theme') === 'light') {
+  }, 2000);
+
+  if (localStorage.getItem('theme') === 'light') {
       body.classList.add('light');
-      // V svetlom režime zobrazíme mesiac pre prepínanie na tmavý režim
       themeIcon.src = 'moon_dark.png';
-    } else {
-      // V tmavom režime zobrazíme slnko pre prepínanie na svetlý režim
+  } else {
       themeIcon.src = 'sun_light.png';
-    }
-  
-    // Prepínač témy
-    themeSwitcher.addEventListener('click', function () {
+  }
+
+  themeSwitcher.addEventListener('click', function () {
       if (body.classList.contains('light')) {
-        body.classList.remove('light');
-        themeIcon.src = 'sun_light.png';
-        localStorage.setItem('theme', 'dark');
+          body.classList.remove('light');
+          themeIcon.src = 'sun_light.png';
+          localStorage.setItem('theme', 'dark');
       } else {
-        body.classList.add('light');
-        themeIcon.src = 'moon_dark.png';
-        localStorage.setItem('theme', 'light');
+          body.classList.add('light');
+          themeIcon.src = 'moon_dark.png';
+          localStorage.setItem('theme', 'light');
       }
-    });
-  
-    // Práca s cvičeniami pre desktopový selector
-    const exerciseLinks = document.querySelectorAll('#exercise-selector ul li a');
-    const exerciseTitle = document.getElementById('exercise-title');
-    const exerciseDetails = document.getElementById('exercise-details');
+  });
+
+  const exerciseLinks = document.querySelectorAll('#exercise-selector ul li a');
+  const exerciseTitle = document.getElementById('exercise-title');
+  const exerciseDetails = document.getElementById('exercise-details');
   
     // Obsah cvičení
     const exercises = {
-      1: `<h4>Vytvorenie projektu v IntelliJ Idea, na konzole pomocou javac, java, jar, na konzole pomocou gradle</h4>
+      literatura:
+      `<h4>Tu na tomto mieste nájdete celkom užitočnú literatúru, ktorá vám dokáže pomôcť pri riešení úloh :D</h4>
           <ul>
-            <li><a href="cv01/cv01_prezentacia.pdf">Prezentácia</a></li>
+            <li><a href="https://refactoring.guru/design-patterns">Design Patterns</a> od Refactoring Guru</li>
+            <li><a href="https://docs.oracle.com/en/java/javase/21/">JDK 21 Documentácia</a> od Oracle</li>
+            <li><a href="https://docs.oracle.com/javase/tutorial/tutorialLearningPaths.html">Java Tutorials - Learning Paths</a> od Oracle</li>
+          </ul>`
+      ,
+      1: `<h4>Vytvorenie projektu:</h4>
+          <ul>
+            <li>v IntelliJ Idea</li>
+            <li>v konzole pomocou javac, java a jar</li>
+            <li>v konzole pomocou gradle</li>
+          </ul>
+          <ul>
+            <li><a href="cv01/cv01_prezentacia.pdf">Prezentácia V1</a></li>
+            <li><a href="cv01/cv01_prezentacia_v2.pdf">Prezentácia V2</a></li>
             <li><a href="cv01/oop2025_cv01_app_intellij.zip">IntelliJ Idea App</a></li>
             <li><a href="cv01/oop2025_cv01_konzola.zip">Príklady s Konzolou</a></li>
           </ul>`,
@@ -67,46 +74,42 @@ document.addEventListener('DOMContentLoaded', function () {
     function loadExercise(id) {
       exerciseTitle.textContent = `Cvičenie ${id}`;
       exerciseDetails.innerHTML = exercises[id] || '<p>Obsah neexistuje.</p>';
-    }
-  
-    // Načíta predvolené cvičenie
-    loadExercise(1);
-    exerciseLinks.forEach(link => {
+  }
+
+  loadExercise(1);
+  exerciseLinks.forEach(link => {
       if (link.getAttribute('data-exercise') === "1") {
-        link.classList.add('selected');
+          link.classList.add('selected');
       }
-    });
-  
-    exerciseLinks.forEach(link => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        exerciseLinks.forEach(l => l.classList.remove('selected'));
-        this.classList.add('selected');
-        const exerciseId = this.getAttribute('data-exercise');
-        loadExercise(exerciseId);
-      });
-    });
-  
-    // Spracovanie slider menu pre mobilné zariadenia
-    const hamburgerMenu = document.getElementById('hamburger-menu');
-    const mobileMenu = document.getElementById('mobile-menu');
-  
-    // Toggle slider menu pri kliknutí na hamburger tlačidlo
-    hamburgerMenu.addEventListener('click', function () {
-      mobileMenu.classList.toggle('active');
-    });
-  
-    // Po kliknutí na odkaz v slider menu načítame cvičenie, zavrieme menu a scrollneme na obsah
-    const mobileLinks = document.querySelectorAll('#mobile-menu ul li a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const exerciseId = this.getAttribute('data-exercise');
-        loadExercise(exerciseId);
-        mobileMenu.classList.remove('active');
-        // Plynulé scrollnutie na obsah cvičenia
-        document.getElementById('exercise-content').scrollIntoView({ behavior: 'smooth' });
-      });
-    });
   });
-  
+
+  exerciseLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+          const exerciseId = this.getAttribute('data-exercise');
+          if (!exerciseId) return;
+          e.preventDefault();
+          exerciseLinks.forEach(l => l.classList.remove('selected'));
+          this.classList.add('selected');
+          loadExercise(exerciseId);
+      });
+  });
+
+  const hamburgerMenu = document.getElementById('hamburger-menu');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburgerMenu.addEventListener('click', function () {
+      mobileMenu.classList.toggle('active');
+  });
+
+  const mobileLinks = document.querySelectorAll('#mobile-menu ul li a');
+  mobileLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+          const exerciseId = this.getAttribute('data-exercise');
+          if (!exerciseId) return;
+          e.preventDefault();
+          loadExercise(exerciseId);
+          mobileMenu.classList.remove('active');
+          document.getElementById('exercise-content').scrollIntoView({ behavior: 'smooth' });
+      });
+  });
+});
