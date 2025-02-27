@@ -63,7 +63,21 @@ document.addEventListener('DOMContentLoaded', function () {
             <li><a href="cv01/oop2025_cv01_app_intellij.zip">IntelliJ Idea App</a></li>
             <li><a href="cv01/oop2025_cv01_konzola.zip">Príklady s Konzolou</a></li>
           </ul>`,
-      2: '<p>Obsah pre Cvičenie 2.</p>',
+      2: `<h4>Obsah:</h4>
+          <ul>
+              <li>primitívne a referenčné typy</li>
+              <li>git, github</li>
+              <li>literály</li>
+              <li>obálkové triedy (wrappery)</li>
+              <li>final premenná</li>
+              <li>pri deklarácii uvádzať typ premennej</li>
+              <li>dokumentácia v IntelliJ Idea</li>
+              <li>vytvorené .jar v IntelliJ Idea</li>
+            </ul>
+            <ul>
+              <li><a href="cv02/cv02_prezentacia.pdf">Prezentácia</a></li>
+              <li><a href="cv02/oop2025_cv02.zip">Súbory na stiahnutie</a></li>
+            </ul>`,
       3: '<p>Obsah pre Cvičenie 3.</p>',
       4: '<p>Obsah pre Cvičenie 4.</p>',
       5: '<p>Obsah pre Cvičenie 5.</p>',
