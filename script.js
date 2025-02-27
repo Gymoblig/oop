@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   
 
-  loadExercise(1);
+  loadExercise(2);
   exerciseLinks.forEach(link => {
       if (link.getAttribute('data-exercise') === "2") {
           link.classList.add('selected');
