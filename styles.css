@@ -367,4 +367,7 @@ img {
   height: auto;
   display: block;
   margin: 0 auto;
+  border-radius: 15px;
+  border: solid 1px #ff440000;
+
 }
