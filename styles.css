@@ -266,7 +266,7 @@
     bottom: 20px;
     cursor: pointer;
     animation: bounce 1.5s infinite;
-    z-index: 9999;
+    z-index: 99;
 }
 #sipka {
   width: 75px !important;
@@ -361,3 +361,10 @@
     }
   }
   
+/* Trieda pre responzívne obrázky */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}

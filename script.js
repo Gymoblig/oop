@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  
   const loader = document.getElementById('loader');
   const content = document.getElementById('content');
   const themeSwitcher = document.getElementById('theme-switcher');
@@ -43,12 +44,20 @@ document.addEventListener('DOMContentLoaded', function () {
   
     // Obsah cvičení
     const exercises = {
-      literatura:
+      Literatúra:
       `<h4>Tu na tomto mieste nájdete celkom užitočnú literatúru, ktorá vám dokáže pomôcť pri riešení úloh :D</h4>
           <ul>
             <li><a href="https://refactoring.guru/design-patterns">Design Patterns</a> od Refactoring Guru</li>
             <li><a href="https://docs.oracle.com/en/java/javase/21/">JDK 21 Documentácia</a> od Oracle</li>
             <li><a href="https://docs.oracle.com/javase/tutorial/tutorialLearningPaths.html">Java Tutorials - Learning Paths</a> od Oracle</li>
+          </ul>`
+      ,
+      Zadania:
+      `<h4>Tu na tomto mieste nájdete všetky zadania z predmetu OOP</h4>
+          <p>Zadanie č.1:<p>
+          <ul>
+            <li><a href="zadania/oop2025_zadanie_1.pdf">Inštrukcie k zadaniu</li>
+            <li><a href="zadania/oop2025_zadanie_1_src.zip">Zdrojový kód na úpravu</li>
           </ul>`
       ,
       1: `<h4>Vytvorenie projektu:</h4>
@@ -78,8 +87,37 @@ document.addEventListener('DOMContentLoaded', function () {
               <li><a href="cv02/cv02_prezentacia.pdf">Prezentácia</a></li>
               <li><a href="cv02/oop2025_cv02.zip">Súbory na stiahnutie</a></li>
             </ul>`,
-      3: '<p>Obsah pre Cvičenie 3.</p>',
-      4: '<p>Obsah pre Cvičenie 4.</p>',
+      3: `<h4>Obsah:</h4>
+          <ul>
+              <li>Polia</li>
+              <li>Funkcie</li>
+              <li>Import</li>
+              <li>Logovanie (tinylog)</li>
+            </ul>
+            <ul>
+              <li><a href="cv03/oop2025_cv03_naWeb.zip</a></li>
+              <li><a href="cv02/oop2025_cv02.zip">Súbory na stiahnutie</a></li>
+            </ul>
+            <img src="cv03/oop_2025_cv03_sifra.png" alt="cv03">`,
+      4: `<h4>Obsah:</h4>
+      <ul>
+          <li>For Each</li>
+          <li>Break a continue s návestím</li>
+          <li>Switch aj ako výraz bez break</li>
+          <li>Text block</li>
+          <li>Assert</li>
+          <li>Preťažovanie funkcií/metód</li>
+          <li>Parametre funkcií/metód</li>
+          <li>Preťažovanie funkcií/metó</li>
+            <li>Rekurzia</li>
+            <li>Static final konštanty</li>
+            <li>Enum</li>
+
+        </ul>
+        <ul>
+          <li><a href="cv04/cv04_prezentacia.pdf">Prezentácia</a></li>
+          <li><a href="cv04/oop2025_cv04.zip">Súbory na stiahnutie</a></li>
+        </ul>`,
       5: '<p>Obsah pre Cvičenie 5.</p>',
       6: '<p>Obsah pre Cvičenie 6.</p>',
       7: '<p>Obsah pre Cvičenie 7.</p>',
@@ -91,14 +129,19 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   
     function loadExercise(id) {
-      exerciseTitle.textContent = `Cvičenie ${id}`;
-      exerciseDetails.innerHTML = exercises[id] || '<p>Obsah neexistuje.</p>';
-  }
+        if (id === 'Literatúra' || id === 'Zadania') {
+            exerciseTitle.textContent = id;
+        } else {
+            exerciseTitle.textContent = `Cvičenie ${id}`;
+        }
+        exerciseDetails.innerHTML = exercises[id] || '<p>Obsah neexistuje.</p>';
+    }
+    
   
 
-  loadExercise(2);
+  loadExercise(4);
   exerciseLinks.forEach(link => {
-      if (link.getAttribute('data-exercise') === "2") {
+      if (link.getAttribute('data-exercise') === "4") {
           link.classList.add('selected');
       }
   });
