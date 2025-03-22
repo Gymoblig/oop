@@ -58,6 +58,12 @@ document.addEventListener('DOMContentLoaded', function () {
           <ul>
             <li><a href="zadania/oop2025_zadanie_1.pdf">Inštrukcie k zadaniu</li>
             <li><a href="zadania/oop2025_zadanie_1_src.zip">Zdrojový kód na úpravu</li>
+          </ul>
+          
+          <p>Zadanie č.2:<p>
+          <ul>
+            <li><a href="zadania/oop2025_zadanie_2.pdf">Inštrukcie k zadaniu</li>
+            <li><a href="zadania/oop2025_zadanie_2_src.zip">Zdrojový kód na úpravu</li>
           </ul>`
       ,
       1: `<h4>Vytvorenie projektu:</h4>
