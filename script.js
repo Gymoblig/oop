@@ -258,11 +258,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   
     // Load default exercise
-    loadExercise(5);
+    loadExercise('Zadania');
   
     // Exercise links logic
     exerciseLinks.forEach(link => {
-      if (link.getAttribute('data-exercise') === "5") {
+      if (link.getAttribute('data-exercise') === "Zadania") {
         link.classList.add('selected');
       }
     });
