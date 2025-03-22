@@ -371,3 +371,158 @@ img {
   border: solid 1px #ff440000;
 
 }
+
+/* Container for ZIP verification elements */
+#zip-verification-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #222; /* Dark mode background */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: auto;
+}
+
+body.light #zip-verification-container {
+  background-color: #f9f9f9; /* Light mode background */
+}
+
+/* Dropdown (assignment selector) */
+#assignment-selector {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: #fff;
+  background-color: #333;
+  border: 2px solid #444;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+body.light #assignment-selector {
+  color: #000;
+  background-color: #f0f0f0;
+  border-color: #ddd;
+}
+
+#assignment-selector:hover {
+  border-color: #ff4500;
+}
+
+#assignment-selector:focus {
+  border-color: #ff4500;
+  box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+}
+
+/* File input */
+#zip-file-input {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: #fff;
+  background-color: #333;
+  border: 2px solid #444;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+  box-sizing: border-box; /* Add this line */
+}
+
+body.light #zip-file-input {
+  color: #000;
+  background-color: #f0f0f0;
+  border-color: #ddd;
+}
+
+#zip-file-input:hover {
+  border-color: #ff4500;
+}
+
+#zip-file-input:focus {
+  border-color: #ff4500;
+  box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+}
+
+/* Verify button */
+#verify-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 1rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: #fff;
+  background-color: #ff4500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+body.light #verify-button {
+  color: #fff;
+  background-color: #ff4500;
+}
+
+#verify-button:hover {
+  background-color: #e63900;
+  transform: scale(1.05);
+}
+
+#verify-button:active {
+  background-color: #cc3300;
+  transform: scale(0.95);
+}
+
+/* File input custom styling */
+#zip-file-input::file-selector-button {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-family: 'Share Tech Mono', monospace;
+  color: #fff;
+  background-color: #444;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+body.light #zip-file-input::file-selector-button {
+  color: #000;
+  background-color: #ddd;
+}
+
+#zip-file-input::file-selector-button:hover {
+  background-color: #555;
+}
+
+body.light #zip-file-input::file-selector-button:hover {
+  background-color: #ccc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #zip-verification-container {
+    padding: 15px;
+  }
+
+  #assignment-selector,
+  #zip-file-input,
+  #verify-button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+/* CSS for ZIP verification container */
+#zip-verification-container {
+  display: none; /* Hidden by default */
+}
+
+#zip-verification-container.visible {
+  display: block; /* Show when the "visible" class is added */
+}

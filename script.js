@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
           <ul>
             <li><a href="zadania/oop2025_zadanie_2.pdf">Inštrukcie k zadaniu</a></li>
             <li><a href="zadania/oop2025_zadanie_2_src.zip">Zdrojový kód na úpravu</a></li>
-          </ul>`
+          </ul>
+           `
       ,
       1: `<h4>Vytvorenie projektu:</h4>
           <ul>
@@ -143,51 +144,157 @@ document.addEventListener('DOMContentLoaded', function () {
       12: '<p>Obsah pre Cvičenie 12.</p>',
     };
   
-    function loadExercise(id) {
-        if (id === 'Literatúra' || id === 'Zadania') {
-            exerciseTitle.textContent = id;
-        } else {
-            exerciseTitle.textContent = `Cvičenie ${id}`;
-        }
-        exerciseDetails.innerHTML = exercises[id] || '<p>Obsah neexistuje.</p>';
-    }
-    
+
+    // Expected structures for each assignment
+  const expectedStructures = {
+    'Zadanie 1': [
+      'src/',
+      'src/Main.java',
+      'src/VectorUtils.java'
+    ],
+    'Zadanie 2': [
+      'src/',
+      'src/Main.java',
+      'src/ShoppingCart.java',
+      'src/Product.java'
+    ]
+    // Add more assignments as needed
+  };
+ 
+    function insertZipVerification() {
+      const zipVerificationHTML = `
+        <div id="zip-verification-container">
+          <select id="assignment-selector">
+            <option value="Zadanie 1">Zadanie 1</option>
+            <option value="Zadanie 2">Zadanie 2</option>
+          </select>
+          <input type="file" id="zip-file-input" accept=".zip" />
+          <button id="verify-button">Overenie štruktúry ZIP súboru</button>
+        </div>
+      `;
   
-
-  loadExercise(5);
-  exerciseLinks.forEach(link => {
-      if (link.getAttribute('data-exercise') === "5") {
-          link.classList.add('selected');
+      // Append the ZIP verification container to the exercise details
+      const exerciseDetails = document.getElementById('exercise-details');
+      exerciseDetails.insertAdjacentHTML('beforeend', zipVerificationHTML);
+  
+      // Add the "visible" class after the container is inserted
+    const zipVerificationContainer = document.getElementById('zip-verification-container');
+    if (zipVerificationContainer) {
+      zipVerificationContainer.classList.add('visible'); // Add the "visible" class
+    }
+      // Get references to the ZIP verification elements
+      const zipFileInput = document.getElementById('zip-file-input');
+      const assignmentSelector = document.getElementById('assignment-selector');
+      const verifyButton = document.getElementById('verify-button');
+  
+      // ZIP file verification logic
+      verifyButton.addEventListener('click', function () {
+        const file = zipFileInput.files[0];
+        if (!file) {
+          alert('Nie je vybratý súbor ZIP.');
+          return;
+        }
+  
+        // Get the selected assignment
+        const selectedAssignment = assignmentSelector.value;
+        const expectedStructure = expectedStructures[selectedAssignment];
+  
+        if (!expectedStructure) {
+          alert('Nebola definovaná štruktúra pre zvolené zadanie.');
+          return;
+        }
+  
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const zipData = e.target.result;
+          JSZip.loadAsync(zipData).then(function (zip) {
+            // Check if all expected files/folders are present
+            const missingFiles = expectedStructure.filter(path => !zip.files[path]);
+  
+            if (missingFiles.length > 0) {
+              alert(`Vo vybratom ZIP súbore chýbajú: ${missingFiles.join(', ')}`);
+            } else {
+              alert('ZIP súbor má správnu štruktúru pre ' + selectedAssignment + '.');
+            }
+          }).catch(function (error) {
+            alert('Chyba pri čítaní ZIP súboru: ' + error.message);
+          });
+        };
+  
+        reader.readAsArrayBuffer(file);
+      });
+    }
+  
+    // Function to remove ZIP verification elements
+    function removeZipVerification() {
+      const zipVerificationContainer = document.getElementById('zip-verification-container');
+      if (zipVerificationContainer) {
+        zipVerificationContainer.remove(); // Remove the container
       }
-  });
-
-  exerciseLinks.forEach(link => {
+    }
+  
+    // Load exercise content and toggle ZIP verification
+    function loadExercise(id) {
+      console.log('Loading Exercise:', id); // Debugging
+      const exerciseTitle = document.getElementById('exercise-title');
+      const exerciseDetails = document.getElementById('exercise-details');
+  
+      // Update the exercise title
+      if (id === 'Literatúra' || id === 'Zadania') {
+        exerciseTitle.textContent = id;
+      } else {
+        exerciseTitle.textContent = `Cvičenie ${id}`;
+      }
+  
+      // Update the exercise details
+      exerciseDetails.innerHTML = exercises[id] || '<p>Obsah neexistuje.</p>';
+  
+      // Insert or remove ZIP verification elements based on the selected tab
+      if (id === 'Zadania') {
+        insertZipVerification(); // Insert ZIP verification elements
+      } else {
+        removeZipVerification(); // Remove ZIP verification elements
+      }
+    }
+  
+    // Load default exercise
+    loadExercise(5);
+  
+    // Exercise links logic
+    exerciseLinks.forEach(link => {
+      if (link.getAttribute('data-exercise') === "5") {
+        link.classList.add('selected');
+      }
+    });
+  
+    exerciseLinks.forEach(link => {
       link.addEventListener('click', function (e) {
-          const exerciseId = this.getAttribute('data-exercise');
-          if (!exerciseId) return;
-          e.preventDefault();
-          exerciseLinks.forEach(l => l.classList.remove('selected'));
-          this.classList.add('selected');
-          loadExercise(exerciseId);
+        const exerciseId = this.getAttribute('data-exercise');
+        if (!exerciseId) return;
+        e.preventDefault();
+        exerciseLinks.forEach(l => l.classList.remove('selected'));
+        this.classList.add('selected');
+        loadExercise(exerciseId);
       });
-  });
-
-  const hamburgerMenu = document.getElementById('hamburger-menu');
-  const mobileMenu = document.getElementById('mobile-menu');
-
-  hamburgerMenu.addEventListener('click', function () {
+    });
+  
+    // Hamburger menu logic
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+  
+    hamburgerMenu.addEventListener('click', function () {
       mobileMenu.classList.toggle('active');
-  });
-
-  const mobileLinks = document.querySelectorAll('#mobile-menu ul li a');
-  mobileLinks.forEach(link => {
+    });
+  
+    const mobileLinks = document.querySelectorAll('#mobile-menu ul li a');
+    mobileLinks.forEach(link => {
       link.addEventListener('click', function (e) {
-          const exerciseId = this.getAttribute('data-exercise');
-          if (!exerciseId) return;
-          e.preventDefault();
-          loadExercise(exerciseId);
-          mobileMenu.classList.remove('active');
-          document.getElementById('exercise-content').scrollIntoView({ behavior: 'smooth' });
+        const exerciseId = this.getAttribute('data-exercise');
+        if (!exerciseId) return;
+        e.preventDefault();
+        loadExercise(exerciseId);
+        mobileMenu.classList.remove('active');
+        document.getElementById('exercise-content').scrollIntoView({ behavior: 'smooth' });
       });
+    });
   });
-});
