@@ -56,14 +56,14 @@ document.addEventListener('DOMContentLoaded', function () {
       `<h4>Tu na tomto mieste nájdete všetky zadania z predmetu OOP</h4>
           <p>Zadanie č.1:<p>
           <ul>
-            <li><a href="zadania/oop2025_zadanie_1.pdf">Inštrukcie k zadaniu</li>
-            <li><a href="zadania/oop2025_zadanie_1_src.zip">Zdrojový kód na úpravu</li>
+            <li><a href="zadania/oop2025_zadanie_1.pdf">Inštrukcie k zadaniu</a></li>
+            <li><a href="zadania/oop2025_zadanie_1_src.zip">Zdrojový kód na úpravu</a></li>
           </ul>
           
           <p>Zadanie č.2:<p>
           <ul>
-            <li><a href="zadania/oop2025_zadanie_2.pdf">Inštrukcie k zadaniu</li>
-            <li><a href="zadania/oop2025_zadanie_2_src.zip">Zdrojový kód na úpravu</li>
+            <li><a href="zadania/oop2025_zadanie_2.pdf">Inštrukcie k zadaniu</a></li>
+            <li><a href="zadania/oop2025_zadanie_2_src.zip">Zdrojový kód na úpravu</a></li>
           </ul>`
       ,
       1: `<h4>Vytvorenie projektu:</h4>
@@ -124,7 +124,16 @@ document.addEventListener('DOMContentLoaded', function () {
           <li><a href="cv04/cv04_prezentacia.pdf">Prezentácia</a></li>
           <li><a href="cv04/oop2025_cv04.zip">Súbory na stiahnutie</a></li>
         </ul>`,
-      5: '<p>Obsah pre Cvičenie 5.</p>',
+      5: `<h4>Obsah:</h4>
+      <ul>
+          <li>Triedy a Objekty/Inštancie</li>
+          <li>Balíky</li>
+          <li>Unit testy (junit)</li>
+        </ul>
+        <ul>
+          <li><a href="cv05/cv05_prezentacia.pdf">Prezentácia</a></li>
+          <li><a href="cv05/oop2025_cv05.zip">Súbory na stiahnutie</a></li>
+        </ul>`,
       6: '<p>Obsah pre Cvičenie 6.</p>',
       7: '<p>Obsah pre Cvičenie 7.</p>',
       8: '<p>Obsah pre Cvičenie 8.</p>',
@@ -145,9 +154,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
   
 
-  loadExercise(4);
+  loadExercise(5);
   exerciseLinks.forEach(link => {
-      if (link.getAttribute('data-exercise') === "4") {
+      if (link.getAttribute('data-exercise') === "5") {
           link.classList.add('selected');
       }
   });
