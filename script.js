@@ -210,12 +210,17 @@ document.addEventListener('DOMContentLoaded', function () {
           JSZip.loadAsync(zipData).then(function (zip) {
             // Check if all expected files/folders are present
             const missingFiles = expectedStructure.filter(path => !zip.files[path]);
+            const zipFiles = Object.keys(zip.files);
+            const unexpectedFiles = zipFiles.filter(path => !expectedStructure.includes(path));
   
             if (missingFiles.length > 0) {
               alert(`Vo vybratom ZIP súbore chýbajú: ${missingFiles.join(', ')}`);
-            } else {
+          } else if (unexpectedFiles.length > 0) {
+              alert(`ZIP obsahuje nečakané súbory: ${unexpectedFiles.join(', ')}`);
+          } else {
               alert('ZIP súbor má správnu štruktúru pre ' + selectedAssignment + '.');
-            }
+          }
+          
           }).catch(function (error) {
             alert('Chyba pri čítaní ZIP súboru: ' + error.message);
           });
