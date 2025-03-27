@@ -65,6 +65,12 @@ document.addEventListener('DOMContentLoaded', function () {
             <li><a href="zadania/oop2025_zadanie_2.pdf">Inštrukcie k zadaniu</a></li>
             <li><a href="zadania/oop2025_zadanie_2_src.zip">Zdrojový kód na úpravu</a></li>
           </ul>
+
+          <p>Zadanie č.3:<p>
+          <ul>
+            <li><a href="zadania/oop2025_zadanie3_v2.pdf">Inštrukcie k zadaniu</a></li>
+            <li><a href="zadania/oop2025_zadanie3_src.zip">Zdrojový kód na úpravu</a></li>
+          </ul>
            `
       ,
       1: `<h4>Vytvorenie projektu:</h4>
@@ -157,6 +163,16 @@ document.addEventListener('DOMContentLoaded', function () {
       'src/Main.java',
       'src/ShoppingCart.java',
       'src/Product.java'
+    ],
+    'Zadanie 3': [
+      'src/',
+      'src/handler/',
+      'src/handler/TaskHandler.java',
+      'src/tasks/',
+      'src/tasks/AbstractTask.java',
+      'src/tasks/SimpleTask.java',
+      'src/tasks/RecurringTask.java',
+      'src/tasks/TaskIdGenerator.java'
     ]
     // Add more assignments as needed
   };
@@ -167,6 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <select id="assignment-selector">
             <option value="Zadanie 1">Zadanie 1</option>
             <option value="Zadanie 2">Zadanie 2</option>
+            <option value="Zadanie 3">Zadanie 3</option>
           </select>
           <input type="file" id="zip-file-input" accept=".zip" />
           <button id="verify-button">Overenie štruktúry ZIP súboru</button>
