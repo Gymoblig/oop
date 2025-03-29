@@ -141,7 +141,19 @@ document.addEventListener('DOMContentLoaded', function () {
           <li><a href="cv05/cv05_prezentacia.pdf">Prezentácia</a></li>
           <li><a href="cv05/oop2025_cv05.zip">Súbory na stiahnutie</a></li>
         </ul>`,
-      6: '<p>Obsah pre Cvičenie 6.</p>',
+      6: `<h4>Obsah:</h4>
+      <ul>
+          <li>Dedičnosť</li>
+          <li>Volanie konštruktora nadtriedy (super), tej istej triedy (this)</li>
+          <li>Prekrývanie konštruktorov a metód (@Override), prístup k implementácii z nadtriedy (super)</li>
+          <li>Protected</li>
+          <li>Abstraktná trieda</li>
+          <li>Abstraktná metóda</li>
+        </ul>
+        <ul>
+          <li><a href="cv06/cv06_prezentacia.pdf">Prezentácia</a></li>
+          <li><a href="cv06/oop2025_cv06.zip">Súbory na stiahnutie</a></li>
+        </ul>`,
       7: '<p>Obsah pre Cvičenie 7.</p>',
       8: '<p>Obsah pre Cvičenie 8.</p>',
       9: '<p>Obsah pre Cvičenie 9.</p>',
