@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
               // Loop through the files and add them to the new zip, skipping .DS_Store
               Object.keys(zip.files).forEach(function (filename) {
-                if (filename !== '.DS_Store' && filename !== 'src/.DS_Store') {
+                if (filename !== '.DS_Store' && filename !== 'src/.DS_Store' && filename !== 'src/image/.DS_Store' && filename !== 'src/handler/.DS_Store' && filename !== 'src/tasks/.DS_Store' && filename !== 'src/bookstore/.DS_Store') {
                   newZip.file(filename, zip.files[filename].async('blob'));
                 }
               });
