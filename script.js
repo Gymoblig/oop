@@ -71,6 +71,18 @@ document.addEventListener('DOMContentLoaded', function () {
             <li><a href="zadania/oop2025_zadanie3_v2.pdf">Inštrukcie k zadaniu</a></li>
             <li><a href="zadania/oop2025_zadanie3_src.zip">Zdrojový kód na úpravu</a></li>
           </ul>
+
+          <p>Zadanie č.4:<p>
+          <ul>
+            <li><a href="zadania/zadanie4_aktualizacia_07_04_2025.pdf">Inštrukcie k zadaniu</a></li>
+            <li><a href="zadania/zadanie4_aktualizacia_07_04_2025.zip">Zdrojový kód na úpravu</a></li>
+          </ul>
+
+          <p>Zadanie č.5:<p>
+          <ul>
+            <li><a href="zadania/zadanie5.pdf">Inštrukcie k zadaniu</a></li>
+            <li><a href="zadania/zadanie5.zip">Zdrojový kód na úpravu</a></li>
+          </ul>
            `
       ,
       1: `<h4>Vytvorenie projektu:</h4>
@@ -154,8 +166,30 @@ document.addEventListener('DOMContentLoaded', function () {
           <li><a href="cv06/cv06_prezentacia.pdf">Prezentácia</a></li>
           <li><a href="cv06/oop2025_cv06.zip">Súbory na stiahnutie</a></li>
         </ul>`,
-      7: '<p>Obsah pre Cvičenie 7.</p>',
-      8: '<p>Obsah pre Cvičenie 8.</p>',
+      7: `<h4>Obsah:</h4>
+      <ul>
+          <li>Výnimky</li>
+          <li>Rozhrania</li>
+        </ul>
+        <ul>
+          <li><a href="cv07/cv07_prezentacia.pdf">Prezentácia</a></li>
+          <li><a href="cv07/oop2025_cv07.zip">Súbory na stiahnutie</a></li>
+        </ul>`,
+      8: `<h4>Obsah:</h4>
+      <ul>
+          <liVnorené typy</li>
+          <li>Pozorovateľ / Observer / Listener</li>
+          <li>Porovnávanie:</li>
+          <ul>
+            <li>Equals() a hashCode()</li>
+            <li>Comparable</li>
+            <li>Comparator</li>
+          </ul>
+        </ul>
+        <ul>
+          <li><a href="cv08/cv08_prezentacia.pdf">Prezentácia</a></li>
+          <li><a href="cv08/oop2025_cv08.zip">Súbory na stiahnutie</a></li>
+        </ul>`,
       9: '<p>Obsah pre Cvičenie 9.</p>',
       10: '<p>Obsah pre Cvičenie 10.</p>',
       11: '<p>Obsah pre Cvičenie 11.</p>',
@@ -185,7 +219,22 @@ document.addEventListener('DOMContentLoaded', function () {
       'src/tasks/SimpleTask.java',
       'src/tasks/RecurringTask.java',
       'src/tasks/TaskIdGenerator.java'
-    ]
+    ],
+    'Zadanie 4': [
+      'src/',
+      'src/image/',
+      'src/image/RasterImage.java',
+      'src/image/TextImage.java'
+    ],
+    'Zadanie 5': [
+      'src/',
+      'src/bookstore',
+      'src/bookstore/BookStore.java',
+      'src/bookstore/Book.java',
+      'src/bookstore/Customer.java',
+      'src/bookstore/NotInInventoryException.java',
+
+    ],
     // Add more assignments as needed
   };
  
@@ -196,6 +245,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <option value="Zadanie 1">Zadanie 1</option>
             <option value="Zadanie 2">Zadanie 2</option>
             <option value="Zadanie 3">Zadanie 3</option>
+            <option value="Zadanie 4">Zadanie 4</option>
+            <option value="Zadanie 5">Zadanie 5</option>
           </select>
           <input type="file" id="zip-file-input" accept=".zip" />
           <button id="verify-button">Overenie štruktúry ZIP súboru</button>
