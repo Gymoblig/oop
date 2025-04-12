@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
           const zipData = e.target.result;
           JSZip.loadAsync(zipData).then(function (zip) {
             // Check if .DS_Store is present in the ZIP
-            if (zip.files['.DS_Store'] || zip.files['src/.DS_Store']) {
+            if (zip.files['.DS_Store'] || zip.files['src/.DS_Store'] || zip.files['src/image/.DS_Store'] || zip.files['src/handler/.DS_Store'] || zip.files['src/tasks/.DS_Store'] || zip.files['src/bookstore/.DS_Store']) {
               alert('Súbor .DS_Store bol nájdený. Stiahne sa nový ZIP bez tohto súboru.');
 
               // Create a new zip object to store files without .DS_Store
