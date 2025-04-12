@@ -288,24 +288,45 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.onload = function (e) {
           const zipData = e.target.result;
           JSZip.loadAsync(zipData).then(function (zip) {
-            // Check if all expected files/folders are present
-            const missingFiles = expectedStructure.filter(path => !zip.files[path]);
-            const zipFiles = Object.keys(zip.files);
-            const unexpectedFiles = zipFiles.filter(path => !expectedStructure.includes(path));
-  
-            if (missingFiles.length > 0) {
-              alert(`Vo vybratom ZIP súbore chýbajú: ${missingFiles.join(', ')}`);
-          } else if (unexpectedFiles.length > 0) {
-              alert(`ZIP obsahuje nečakané súbory: ${unexpectedFiles.join(', ')}`);
-          } else {
-              alert('ZIP súbor má správnu štruktúru pre ' + selectedAssignment + '.');
-          }
-          
-          }).catch(function (error) {
-            alert('Chyba pri čítaní ZIP súboru: ' + error.message);
+            // Check if .DS_Store is present in the ZIP
+            if (zip.files['.DS_Store'] || zip.files['src/.DS_Store']) {
+              alert('Súbor .DS_Store bol nájdený. Stiahne sa nový ZIP bez tohto súboru.');
+
+              // Create a new zip object to store files without .DS_Store
+              const newZip = new JSZip();
+
+              // Loop through the files and add them to the new zip, skipping .DS_Store
+              Object.keys(zip.files).forEach(function (filename) {
+                if (filename !== '.DS_Store' && filename !== 'src/.DS_Store') {
+                  newZip.file(filename, zip.files[filename].async('blob'));
+                }
+              });
+
+              // Generate the new ZIP without .DS_Store
+              newZip.generateAsync({ type: 'blob' }).then(function (newBlob) {
+                // Create a link to download the new ZIP file
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(newBlob);
+                link.download = 'Opravene '+ assignmentSelector.value +'.zip'; // Name for the new ZIP file
+                link.click(); // Trigger the download
+              });
+            } else {
+              // If .DS_Store is not found, proceed with normal structure validation
+              const missingFiles = expectedStructure.filter(path => !zip.files[path]);
+              const zipFiles = Object.keys(zip.files);
+              const unexpectedFiles = zipFiles.filter(path => !expectedStructure.includes(path));
+
+              if (missingFiles.length > 0) {
+                alert('Chýbajúce súbory: ' + missingFiles.join(', '));
+              } else if (unexpectedFiles.length > 0) {
+                alert('Neočakávané súbory: ' + unexpectedFiles.join(', '));
+              } else {
+                alert('Štruktúra ZIP súboru je správna.');
+              }
+            }
           });
         };
-  
+
         reader.readAsArrayBuffer(file);
       });
     }
