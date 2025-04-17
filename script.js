@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ],
     'Zadanie 5': [
       'src/',
-      'src/bookstore',
+      'src/bookstore/',
       'src/bookstore/BookStore.java',
       'src/bookstore/Book.java',
       'src/bookstore/Customer.java',
@@ -404,3 +404,5 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
+
